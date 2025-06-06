@@ -1,0 +1,360 @@
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#000000', 'lineColor': '#333333', 'secondaryColor': '#f0f0f0', 'tertiaryColor': '#ffffff', 'background': '#ffffff', 'mainBkg': '#ffffff', 'secondBkg': '#f8f9fa', 'tertiaryBkg': '#e9ecef'}}}%%
+classDiagram
+    class GameManager {
+        <<Game Core>>
+        style GameManager fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000
+        -instance: GameManager
+        -gameState: GameState
+        -resourceManager: ResourceManager
+        -waveManager: WaveManager
+        -towerManager: TowerManager
+        -mapGrid: MapGrid
+        +getInstance(): GameManager
+        +startGame(): void
+        +pauseGame(): void
+        +endGame(): void
+        +update(): void
+    }
+
+    class ResourceManager {
+        <<Resources>>
+        style ResourceManager fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+        -gold: int
+        -lives: int
+        -score: int
+        +addGold(amount: int): void
+        +spendGold(amount: int): bool
+        +loseLives(amount: int): void
+        +addScore(points: int): void
+        +getGold(): int
+        +getLives(): int
+        +getScore(): int
+    }
+
+    class WaveManager {
+        <<Wave System>>
+        style WaveManager fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+        -currentWave: int
+        -waveInProgress: bool
+        -enemyFactory: EnemyFactory
+        -spawnTimer: float
+        -waveConfig: WaveConfig[]
+        +startWave(): void
+        +spawnEnemy(): void
+        +isWaveComplete(): bool
+        +getNextWaveInfo(): WaveInfo
+    }
+
+    class WaveConfig {
+        <<Configuration>>
+        style WaveConfig fill:#fce4ec,stroke:#e91e63,stroke-width:2px,color:#000
+        -waveNumber: int
+        -enemyTypes: EnemyType[]
+        -enemyCounts: int[]
+        -spawnDelay: float
+        -goldReward: int
+    }
+
+    class TowerManager {
+        <<Tower System>>
+        style TowerManager fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+        -towers: Tower[]
+        -towerFactory: TowerFactory
+        +buildTower(type: TowerType, position: Position): bool
+        +upgradeTower(tower: Tower): bool
+        +sellTower(tower: Tower): void
+        +updateTowers(): void
+    }
+
+    class MapGrid {
+        style MapGrid fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+        -width: int
+        -height: int
+        -cells: Cell[][]
+        -path: Position[]
+        +isValidBuildPosition(pos: Position): bool
+        +getPath(): Position[]
+        +getCellAt(pos: Position): Cell
+    }
+
+    class Cell {
+        style Cell fill:#e1f5fe,stroke:#00bcd4,stroke-width:2px,color:#000
+        -position: Position
+        -type: CellType
+        -isOccupied: bool
+        +canBuildTower(): bool
+        +setOccupied(occupied: bool): void
+    }
+
+    class Position {
+        style Position fill:#f1f8e9,stroke:#689f38,stroke-width:2px,color:#000
+        +x: float
+        +y: float
+        +distance(other: Position): float
+        +equals(other: Position): bool
+    }
+
+    %% Design Pattern: Strategy pour les tours
+    class Tower {
+        <<abstract>>
+        style Tower fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px,color:#000
+        #position: Position
+        #damage: int
+        #range: float
+        #attackSpeed: float
+        #cost: int
+        #level: int
+        #attackStrategy: AttackStrategy
+        +attack(enemies: Enemy[]): void
+        +upgrade(): void
+        +getRange(): float
+        +getCost(): int
+        +setAttackStrategy(strategy: AttackStrategy): void
+    }
+
+    class BasicTower {
+        style BasicTower fill:#e1f5fe,stroke:#00bcd4,stroke-width:2px,color:#000
+        +BasicTower(pos: Position)
+        +attack(enemies: Enemy[]): void
+    }
+
+    class SniperTower {
+        style SniperTower fill:#e1f5fe,stroke:#00bcd4,stroke-width:2px,color:#000
+        +SniperTower(pos: Position)
+        +attack(enemies: Enemy[]): void
+    }
+
+    class CannonTower {
+        style CannonTower fill:#e1f5fe,stroke:#00bcd4,stroke-width:2px,color:#000
+        +CannonTower(pos: Position)
+        +attack(enemies: Enemy[]): void
+    }
+
+    %% Design Pattern: Strategy pour les attaques
+    class AttackStrategy {
+        <<interface>>
+        style AttackStrategy fill:#f1f8e9,stroke:#689f38,stroke-width:2px,color:#000
+        +execute(tower: Tower, enemies: Enemy[]): void
+    }
+
+    class SingleTargetAttack {
+        style SingleTargetAttack fill:#dcedc8,stroke:#689f38,stroke-width:2px,color:#000
+        +execute(tower: Tower, enemies: Enemy[]): void
+    }
+
+    class AreaOfEffectAttack {
+        style AreaOfEffectAttack fill:#dcedc8,stroke:#689f38,stroke-width:2px,color:#000
+        -explosionRadius: float
+        +execute(tower: Tower, enemies: Enemy[]): void
+    }
+
+    class SlowingAttack {
+        style SlowingAttack fill:#dcedc8,stroke:#689f38,stroke-width:2px,color:#000
+        -slowDuration: float
+        -slowEffect: float
+        +execute(tower: Tower, enemies: Enemy[]): void
+    }
+
+    %% Design Pattern: Factory pour les tours
+    class TowerFactory {
+        <<abstract>>
+        style TowerFactory fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+        +createTower(type: TowerType, pos: Position): Tower
+    }
+
+    class ConcreteTowerFactory {
+        style ConcreteTowerFactory fill:#c8e6c9,stroke:#4caf50,stroke-width:2px,color:#000
+        +createTower(type: TowerType, pos: Position): Tower
+    }
+
+    %% Design Pattern: Observer pour les ennemis
+    class Enemy {
+        <<abstract>>
+        style Enemy fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+        #position: Position
+        #health: int
+        #maxHealth: int
+        #speed: float
+        #goldValue: int
+        #pathIndex: int
+        #observers: Observer[]
+        +takeDamage(amount: int): void
+        +move(path: Position[]): void
+        +isDead(): bool
+        +addObserver(observer: Observer): void
+        +notifyObservers(): void
+    }
+
+    class BasicEnemy {
+        style BasicEnemy fill:#ffcdd2,stroke:#f44336,stroke-width:2px,color:#000
+        +BasicEnemy()
+        +move(path: Position[]): void
+    }
+
+    class FastEnemy {
+        style FastEnemy fill:#ffcdd2,stroke:#f44336,stroke-width:2px,color:#000
+        +FastEnemy()
+        +move(path: Position[]): void
+    }
+
+    class TankEnemy {
+        style TankEnemy fill:#ffcdd2,stroke:#f44336,stroke-width:2px,color:#000
+        +TankEnemy()
+        +move(path: Position[]): void
+    }
+
+    class BossEnemy {
+        style BossEnemy fill:#ffcdd2,stroke:#f44336,stroke-width:2px,color:#000
+        +BossEnemy()
+        +move(path: Position[]): void
+        +specialAbility(): void
+    }
+
+    %% Design Pattern: Factory pour les ennemis
+    class EnemyFactory {
+        <<abstract>>
+        style EnemyFactory fill:#fff8e1,stroke:#ffc107,stroke-width:2px,color:#000
+        +createEnemy(type: EnemyType): Enemy
+    }
+
+    class ConcreteEnemyFactory {
+        style ConcreteEnemyFactory fill:#ffecb3,stroke:#ffc107,stroke-width:2px,color:#000
+        +createEnemy(type: EnemyType): Enemy
+    }
+
+    %% Design Pattern: Observer
+    class Observer {
+        <<interface>>
+        style Observer fill:#f3e5f5,stroke:#ab47bc,stroke-width:2px,color:#000
+        +update(enemy: Enemy): void
+    }
+
+    class ScoreObserver {
+        style ScoreObserver fill:#e1bee7,stroke:#ab47bc,stroke-width:2px,color:#000
+        -resourceManager: ResourceManager
+        +update(enemy: Enemy): void
+    }
+
+    class EffectObserver {
+        style EffectObserver fill:#e1bee7,stroke:#ab47bc,stroke-width:2px,color:#000
+        +update(enemy: Enemy): void
+    }
+
+    %% Design Pattern: Command pour les actions du joueur
+    class Command {
+        <<interface>>
+        style Command fill:#e0f2f1,stroke:#009688,stroke-width:2px,color:#000
+        +execute(): void
+        +undo(): void
+    }
+
+    class BuildTowerCommand {
+        style BuildTowerCommand fill:#b2dfdb,stroke:#009688,stroke-width:2px,color:#000
+        -towerManager: TowerManager
+        -towerType: TowerType
+        -position: Position
+        +execute(): void
+        +undo(): void
+    }
+
+    class UpgradeTowerCommand {
+        style UpgradeTowerCommand fill:#b2dfdb,stroke:#009688,stroke-width:2px,color:#000
+        -tower: Tower
+        +execute(): void
+        +undo(): void
+    }
+
+    class SellTowerCommand {
+        style SellTowerCommand fill:#b2dfdb,stroke:#009688,stroke-width:2px,color:#000
+        -tower: Tower
+        -towerManager: TowerManager
+        +execute(): void
+        +undo(): void
+    }
+
+    %% Énumérations
+    class TowerType {
+        <<enumeration>>
+        style TowerType fill:#ede7f6,stroke:#673ab7,stroke-width:2px,color:#000
+        BASIC
+        SNIPER
+        CANNON
+        ICE
+    }
+
+    class EnemyType {
+        <<enumeration>>
+        style EnemyType fill:#fce4ec,stroke:#e91e63,stroke-width:2px,color:#000
+        BASIC
+        FAST
+        TANK
+        BOSS
+    }
+
+    class CellType {
+        <<enumeration>>
+        style CellType fill:#f9fbe7,stroke:#827717,stroke-width:2px,color:#000
+        PATH
+        BUILDABLE
+        BLOCKED
+    }
+
+    class GameState {
+        <<enumeration>>
+        style GameState fill:#e8f5e8,stroke:#388e3c,stroke-width:2px,color:#000
+        MENU
+        PLAYING
+        PAUSED
+        GAME_OVER
+        VICTORY
+    }
+
+    %% Relations
+    GameManager --> ResourceManager
+    GameManager --> WaveManager
+    GameManager --> TowerManager
+    GameManager --> MapGrid
+    
+    WaveManager --> EnemyFactory
+    WaveManager --> WaveConfig
+    WaveManager --> Enemy
+    
+    TowerManager --> TowerFactory
+    TowerManager --> Tower
+    
+    MapGrid --> Cell
+    Cell --> Position
+    
+    Tower --> AttackStrategy
+    Tower --> Position
+    BasicTower --|> Tower
+    SniperTower --|> Tower
+    CannonTower --|> Tower
+    
+    AttackStrategy <|-- SingleTargetAttack
+    AttackStrategy <|-- AreaOfEffectAttack
+    AttackStrategy <|-- SlowingAttack
+    
+    TowerFactory <|-- ConcreteTowerFactory
+    
+    Enemy --> Observer
+    Enemy --> Position
+    BasicEnemy --|> Enemy
+    FastEnemy --|> Enemy
+    TankEnemy --|> Enemy
+    BossEnemy --|> Enemy
+    
+    EnemyFactory <|-- ConcreteEnemyFactory
+    
+    Observer <|-- ScoreObserver
+    Observer <|-- EffectObserver
+    ScoreObserver --> ResourceManager
+    
+    Command <|-- BuildTowerCommand
+    Command <|-- UpgradeTowerCommand
+    Command <|-- SellTowerCommand
+    
+    BuildTowerCommand --> TowerManager
+    UpgradeTowerCommand --> Tower
+    SellTowerCommand --> Tower
+    SellTowerCommand --> TowerManager
