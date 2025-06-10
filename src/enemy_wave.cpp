@@ -1,7 +1,13 @@
 #include "enemy_wave.hpp"
 
 EnemyWave generateWave(int waveNumber, int previousTotal) {
-    int total = static_cast<int>(previousTotal * 1.3 + 5);
+    int total;
+
+    if(waveNumber == 1) {
+        total = previousTotal;
+    } else {
+        total = static_cast<int>(previousTotal * 1.3 + 5);
+        }
 
     EnemyWave wave = {0};
 
