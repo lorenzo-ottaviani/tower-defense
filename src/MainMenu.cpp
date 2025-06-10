@@ -32,7 +32,7 @@ void MainMenu::loadAssets() {
 }
 
 void MainMenu::initializeButtons() {
-    std::vector<std::string> labels = { "Play", "How to Play", "Settings", "Credits" };
+    std::vector<std::string> labels = { "Play", "Settings", "Credits" };
     float buttonYStart = logo.getPosition().y + 300.f;
     float spacing = 100.f;
 

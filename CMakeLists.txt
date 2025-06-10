@@ -1,23 +1,31 @@
-cmake_minimum_required(VERSION 3.15)
-project(tower_defense CXX)
+cmake_minimum_required(VERSION 3.22)
+project(SeaVsHumans)
 
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# Set the C++ standard
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# Set the compiler for Windows MSYS2
-if (WIN32)
-    set(CMAKE_CXX_COMPILER "C:/msys64/mingw64/bin/g++.exe")
-endif()
+# Find SFML
+find_package(SFML 2.5.1 COMPONENTS graphics window system REQUIRED)
 
-# Add G++-specific compilation options
-if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    add_compile_options(-finput-charset=UTF-8 -fexec-charset=UTF-8)
-endif()
+# Include directories for SFML
+include_directories(${SFML_INCLUDE_DIRS})
 
-# === Program ===
-file(GLOB SOURCES "src/*.cpp")
-add_executable(tower_defense ${SOURCES})
-include_directories(include)
+# Source files
+set(SOURCES
+    src/main.cpp
+    src/MainMenu.cpp
+    src/Screen.cpp
+    src/ScreenManager.cpp
+)
 
-# Enable detailed build output
-set(CMAKE_VERBOSE_MAKEFILE ON)
+# Create the executable
+add_executable(SeaVsHumans ${SOURCES})
+
+# Link SFML libraries
+target_link_libraries(SeaVsHumans sfml-graphics sfml-window sfml-system)
+
+# Optional, set the output directory for the executable
+set_target_properties(SeaVsHumans PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+)
