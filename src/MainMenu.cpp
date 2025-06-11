@@ -8,16 +8,14 @@ MainMenu::MainMenu(sf::RenderWindow& window) : window(window) {
 
 void MainMenu::loadAssets() {
     // Load background image
-    sf::Texture bgTexture;
-    if (!bgTexture.loadFromFile("assets/images/background.png")) {
+    if (!bgTexture.loadFromFile("../assets/images/background.png")) {
         std::cerr << "Error loading background.png\n";
         throw std::runtime_error("Failed to load background image");
     }
     background.setTexture(bgTexture);
 
     // Load logo
-    sf::Texture logoTexture;
-    if (!logoTexture.loadFromFile("assets/images/logo.png")) {
+    if (!logoTexture.loadFromFile("../assets/images/logo.png")) {
         std::cerr << "Error loading logo.png\n";
         throw std::runtime_error("Failed to load logo image");
     }
@@ -25,7 +23,7 @@ void MainMenu::loadAssets() {
     logo.setPosition((window.getSize().x - logo.getGlobalBounds().width) / 2.f, 1.f);
 
     // Load font
-    if (!font.loadFromFile("assets/fonts/zing.rust-demo-base.otf")) {
+    if (!font.loadFromFile("../assets/fonts/zing.rust-demo-base.otf")) {
         std::cerr << "Error loading zing.rust-demo-base.otf\n";
         throw std::runtime_error("Failed to load font");
     }
@@ -58,7 +56,7 @@ void MainMenu::initializeButtons() {
         btn.shadow.setPosition(x + 2, y + 2);
         btn.text.setPosition(x, y);
 
-        // assign a simple click handler
+        // Click handler
         if (labels[i] == "Play") {
             btn.onClick = []() { std::cout << "Play clicked\n"; };
         } else if (labels[i] == "Settings") {
@@ -80,6 +78,7 @@ void MainMenu::handleInput(sf::Event& event) {
         for (auto& btn : buttons) {
             if (btn.text.getGlobalBounds().contains(mousePos)) {
                 btn.onClick();
+                break;
             }
         }
     }

@@ -8,7 +8,7 @@ int main() {
     window.setFramerateLimit(60);
 
     ScreenManager screenManager;
-    screenManager.pushScreen(std::make_unique<MainMenu>(window));
+    screenManager.pushScreen(std::unique_ptr<Screen>(new MainMenu(window)));
 
     while (window.isOpen()) {
         sf::Event event;

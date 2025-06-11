@@ -26,6 +26,8 @@ private:
     sf::Sprite background;
     sf::Sprite logo;
     sf::Font font;
+    sf::Texture bgTexture;
+    sf::Texture logoTexture;
     std::vector<TextButton> buttons;
 
     void initializeButtons();
@@ -33,3 +35,4 @@ private:
 };
 
 #endif // MAIN_MENU_HPP
+
