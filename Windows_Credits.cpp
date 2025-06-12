@@ -15,7 +15,7 @@ int main() {
 
     // Image de fond
     sf::Texture bgTexture;
-    if (!bgTexture.loadFromFile("background.jpg")) {
+    if (!bgTexture.loadFromFile("./background.jpg")) {
         return -1;
     }
     sf::Sprite background(bgTexture);
