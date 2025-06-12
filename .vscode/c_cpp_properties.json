@@ -4,7 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/msys64/mingw64/include/SFML"
+                "C:/msys64/ucrt64/include/SFML"
             ],
             "defines": [
                 "_DEBUG",
