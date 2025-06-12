@@ -9,11 +9,11 @@ Clam,Echo Clam,130,3,15,40,Area Damage,Chains hit second enemy
 
 Algae Bed,Base,40,2.5,-,-,Slows 40% for 2s,Passive slowing zone
 Algae Bed,Kelp Forest,90,3,-,-,Slows 50% for 3s,Wider slow area
-Algae Bed,Sticky Algae,100,2.5,-,-,Slows 60% + 1s trap,Traps enemy briefly
+Algae Bed,Sticky Algae,100,2.5,-,-,Slows 60% for 4s,Traps enemy briefly (1s trap)
 
 Jellyfish Nest,Base,70,3.5,10,10/s over 3s,Poison Damage,Good vs tanky enemies
 Jellyfish Nest,Toxic Bloom,120,4,12,12/s over 4s,Poison Damage,Stronger DoT
-Jellyfish Nest,Neuro Sting,130,3.5,10,10/s over 3s + 0.5s stun,Poison + Stun,Control tool
+Jellyfish Nest,Neuro Sting,130,3.5,10,15/s over 5s,Poison + Stun,Control tool (0.5s stun)
 
 Octopus,Base,100,2.5,6,Instant Kill,Control,Grabs 1 enemy instantly
 Octopus,Kraken Jr.,160,3,8,Instant Kill,Control,Shorter cooldown
