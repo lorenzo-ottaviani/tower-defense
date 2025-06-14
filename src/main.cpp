@@ -1,6 +1,6 @@
 /*
-* Author : Lorenzo OTTAVIANI.
-* Date : 10/06/2025 00h27
+* Authors : Samy BELAZZOUG, Laurent CASSAR, Lorenzo OTTAVIANI and Leila WILDE.
+* Date : 12/06/2025 20h08
 * Aim of the program :
 *    Tower defense game.
 * Input : ∅
@@ -8,8 +8,13 @@
 */
 
 #include <iostream>
+#include <string>
 
+#include "models\enemy.hpp"
+#include "models\enemy_factory.hpp"
 #include "enemy_wave.hpp"
+#include "models\tower.hpp"
+#include "models\tower_factory.hpp"
 
 void printWave(int waveNumber, const EnemyWave& wave, int total) {
     std::cout << "Wave " << waveNumber << " (Total: " << total << "):\n";
@@ -23,6 +28,14 @@ void printWave(int waveNumber, const EnemyWave& wave, int total) {
 
 int main() {
     int previousTotal = 10;
+
+	std::cout << std::endl;
+	std::unique_ptr<Tower> tower_test = TowerFactory::createTower("Sandcastle");
+	tower_test->display_informations();
+	std::cout << std::endl;
+
+
+	EnemyFactory::createEnemy("OilTanker");
 
     for (int i = 1; i <= 10; ++i) {
         EnemyWave wave = generateWave(i, previousTotal);

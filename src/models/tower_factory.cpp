@@ -1,8 +1,8 @@
 #include <memory>
 #include <stdexcept>
 
-#include "tower.hpp"
-#include "tower_factory.hpp"
+#include "models/tower.hpp"
+#include "models/tower_factory.hpp"
 
 std::unique_ptr<Tower> TowerFactory::createTower(const std::string& type) {
     if (type == "Sandcastle") {

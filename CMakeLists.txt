@@ -24,7 +24,7 @@ if (WIN32)
 endif()
 
 # === Program ===
-file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "src/models/*.cpp" "src/*.cpp")
 add_executable(tower_defense ${SOURCES})
 include_directories(include)
 

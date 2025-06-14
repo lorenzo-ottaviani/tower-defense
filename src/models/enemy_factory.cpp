@@ -1,8 +1,8 @@
 #include <memory>
 #include <stdexcept>
 
-#include "enemy.hpp"
-#include "enemy_factory.hpp"
+#include "models/enemy.hpp"
+#include "models/enemy_factory.hpp"
 
 std::unique_ptr<Enemy> EnemyFactory::createEnemy(const std::string& type) {
     if (type == "TouristBoat") {

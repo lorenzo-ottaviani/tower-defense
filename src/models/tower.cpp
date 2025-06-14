@@ -1,8 +1,28 @@
 #include <chrono>
+#include <iostream>
 #include <string>
 
-#include "tower.hpp"
+#include "models/tower.hpp"
 
+/**
+ * @brief Display informations about a Sandcastle Tower.
+ *
+ * Print in the terminal the tower description.
+ */
+void SandcastleTower::display_informations() {
+	std::cout << "SANDCASTLE TOWER " << std::endl;
+    std::cout << "Level : " << level_name << std::endl;
+    std::cout << "Attack : " << attack_power << std::endl;
+    std::cout << "Range : " << range << std::endl;
+    std::cout << "RPM : " << rpm << std::endl;
+    std::cout << "Cost : " << cost << std::endl;
+}
+
+/**
+ * @brief Change the Sandcastle Tower level and update its stats accordingly.
+ *
+ * @param The new level to apply to the tower.
+ */
 void SandcastleTower::changeLevel(int new_level) {
     if (new_level == 2) {
         this->level = 2;
@@ -21,6 +41,25 @@ void SandcastleTower::changeLevel(int new_level) {
     }
 }
 
+/**
+ * @brief Display informations about a Clam Tower.
+ *
+ * Print in the terminal the tower description.
+ */
+void ClamTower::display_informations() {
+	std::cout << "CLAM TOWER " << std::endl;
+    std::cout << "Level : " << level_name << std::endl;
+    std::cout << "Attack : " << attack_power << std::endl;
+    std::cout << "Range : " << range << std::endl;
+    std::cout << "RPM : " << rpm << std::endl;
+    std::cout << "Cost : " << cost << std::endl;
+}
+
+/**
+ * @brief Change the Clam Tower level and update its stats accordingly.
+ *
+ * @param The new level to apply to the tower.
+ */
 void ClamTower::changeLevel(int new_level) {
     if (new_level == 2) {
         this->level = 2;
@@ -39,6 +78,24 @@ void ClamTower::changeLevel(int new_level) {
     }
 }
 
+/**
+ * @brief Display informations about a Algae Bed Tower.
+ *
+ * Print in the terminal the tower description.
+ */
+void AlgaeBedTower::display_informations() {
+	std::cout << "ALGAE BED TOWER " << std::endl;
+    std::cout << "Level : " << level_name << std::endl;
+    std::cout << "Slow effect : " << slow_percentage << "for " << slow_time << "s" << std::endl;
+    std::cout << "Range : " << range << std::endl;
+    std::cout << "Cost : " << cost << std::endl;
+}
+
+/**
+ * @brief Change the Algae Bed Tower level and update its stats accordingly.
+ *
+ * @param The new level to apply to the tower.
+ */
 void AlgaeBedTower::changeLevel(int new_level) {
     if (new_level == 2) {
         this->level = 2;
@@ -57,7 +114,26 @@ void AlgaeBedTower::changeLevel(int new_level) {
     }
 }
 
-void JellyfishNest::changeLevel(int new_level) {
+/**
+ * @brief Display informations about a Jellyfish Nest Tower.
+ *
+ * Print in the terminal the tower description.
+ */
+void JellyfishNestTower::display_informations() {
+	std::cout << "JELLYFISH NEST TOWER " << std::endl;
+    std::cout << "Level : " << level_name << std::endl;
+    std::cout << "Attack : " << attack_power << "for " << attack_time << "s" << std::endl;
+    std::cout << "Range : " << range << std::endl;
+    std::cout << "RPM : " << rpm << std::endl;
+    std::cout << "Cost : " << cost << std::endl;
+}
+
+/**
+ * @brief Change the Jellyfish Nest Tower level and update its stats accordingly.
+ *
+ * @param The new level to apply to the tower.
+ */
+void JellyfishNestTower::changeLevel(int new_level) {
     if (new_level == 2) {
         this->level = 2;
         this->level_name = "Toxic Bloom";
@@ -77,6 +153,25 @@ void JellyfishNest::changeLevel(int new_level) {
     }
 }
 
+/**
+ * @brief Display informations about a Octopus Tower.
+ *
+ * Print in the terminal the tower description.
+ */
+void OctopusTower::display_informations() {
+	std::cout << "OCTOPUS TOWER " << std::endl;
+    std::cout << "Level : " << level_name << std::endl;
+    std::cout << "Attack : kill the enemy !" << std::endl;
+    std::cout << "Range : " << range << std::endl;
+    std::cout << "RPM : " << rpm << std::endl;
+    std::cout << "Cost : " << cost << std::endl;
+}
+
+/**
+ * @brief Change the Octopus Tower level and update its stats accordingly.
+ *
+ * @param The new level to apply to the tower.
+ */
 void OctopusTower::changeLevel(int new_level) {
     if (new_level == 2) {
         this->level = 2;
