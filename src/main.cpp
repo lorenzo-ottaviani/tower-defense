@@ -31,11 +31,13 @@ int main() {
 
 	std::cout << std::endl;
 	std::unique_ptr<Tower> tower_test = TowerFactory::createTower("Sandcastle");
-	tower_test->display_informations();
+	tower_test->display_information();
 	std::cout << std::endl;
 
 
-	EnemyFactory::createEnemy("OilTanker");
+	std::unique_ptr<Enemy> enemy_test = EnemyFactory::createEnemy("OilTanker");
+    enemy_test->display_information();
+	std::cout << std::endl;
 
     for (int i = 1; i <= 10; ++i) {
         EnemyWave wave = generateWave(i, previousTotal);

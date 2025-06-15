@@ -5,12 +5,12 @@
 #include "models/tower.hpp"
 
 /**
- * @brief Display informations about a Sandcastle Tower.
+ * @brief Displays information about a Sandcastle Tower.
  *
- * Print in the terminal the tower description.
+ * Prints the tower's stats to the terminal.
  */
-void SandcastleTower::display_informations() {
-	std::cout << "SANDCASTLE TOWER " << std::endl;
+void SandcastleTower::display_information() {
+	std::cout << "SANDCASTLE TOWER" << std::endl;
     std::cout << "Level : " << level_name << std::endl;
     std::cout << "Attack : " << attack_power << std::endl;
     std::cout << "Range : " << range << std::endl;
@@ -21,7 +21,7 @@ void SandcastleTower::display_informations() {
 /**
  * @brief Change the Sandcastle Tower level and update its stats accordingly.
  *
- * @param The new level to apply to the tower.
+ * @param new_level The new level to apply to the tower.
  */
 void SandcastleTower::changeLevel(int new_level) {
     if (new_level == 2) {
@@ -42,12 +42,12 @@ void SandcastleTower::changeLevel(int new_level) {
 }
 
 /**
- * @brief Display informations about a Clam Tower.
+ * @brief Displays information about a Clam Tower.
  *
- * Print in the terminal the tower description.
+ * Prints the tower's stats to the terminal.
  */
-void ClamTower::display_informations() {
-	std::cout << "CLAM TOWER " << std::endl;
+void ClamTower::display_information() {
+	std::cout << "CLAM TOWER" << std::endl;
     std::cout << "Level : " << level_name << std::endl;
     std::cout << "Attack : " << attack_power << std::endl;
     std::cout << "Range : " << range << std::endl;
@@ -58,7 +58,7 @@ void ClamTower::display_informations() {
 /**
  * @brief Change the Clam Tower level and update its stats accordingly.
  *
- * @param The new level to apply to the tower.
+ * @param new_level The new level to apply to the tower.
  */
 void ClamTower::changeLevel(int new_level) {
     if (new_level == 2) {
@@ -79,12 +79,12 @@ void ClamTower::changeLevel(int new_level) {
 }
 
 /**
- * @brief Display informations about a Algae Bed Tower.
+ * @brief Displays information about a Algae Bed Tower.
  *
- * Print in the terminal the tower description.
+ * Prints the tower's stats to the terminal.
  */
-void AlgaeBedTower::display_informations() {
-	std::cout << "ALGAE BED TOWER " << std::endl;
+void AlgaeBedTower::display_information() {
+	std::cout << "ALGAE BED TOWER" << std::endl;
     std::cout << "Level : " << level_name << std::endl;
     std::cout << "Slow effect : " << slow_percentage << "for " << slow_time << "s" << std::endl;
     std::cout << "Range : " << range << std::endl;
@@ -94,7 +94,7 @@ void AlgaeBedTower::display_informations() {
 /**
  * @brief Change the Algae Bed Tower level and update its stats accordingly.
  *
- * @param The new level to apply to the tower.
+ * @param new_level The new level to apply to the tower.
  */
 void AlgaeBedTower::changeLevel(int new_level) {
     if (new_level == 2) {
@@ -115,12 +115,12 @@ void AlgaeBedTower::changeLevel(int new_level) {
 }
 
 /**
- * @brief Display informations about a Jellyfish Nest Tower.
+ * @brief Displays information about a Jellyfish Nest Tower.
  *
- * Print in the terminal the tower description.
+ * Prints the tower's stats to the terminal.
  */
-void JellyfishNestTower::display_informations() {
-	std::cout << "JELLYFISH NEST TOWER " << std::endl;
+void JellyfishNestTower::display_information() {
+	std::cout << "JELLYFISH NEST TOWER" << std::endl;
     std::cout << "Level : " << level_name << std::endl;
     std::cout << "Attack : " << attack_power << "for " << attack_time << "s" << std::endl;
     std::cout << "Range : " << range << std::endl;
@@ -131,7 +131,7 @@ void JellyfishNestTower::display_informations() {
 /**
  * @brief Change the Jellyfish Nest Tower level and update its stats accordingly.
  *
- * @param The new level to apply to the tower.
+ * @param new_level The new level to apply to the tower.
  */
 void JellyfishNestTower::changeLevel(int new_level) {
     if (new_level == 2) {
@@ -154,12 +154,12 @@ void JellyfishNestTower::changeLevel(int new_level) {
 }
 
 /**
- * @brief Display informations about a Octopus Tower.
+ * @brief Displays information about a Octopus Tower.
  *
- * Print in the terminal the tower description.
+ * Prints the tower's stats to the terminal.
  */
-void OctopusTower::display_informations() {
-	std::cout << "OCTOPUS TOWER " << std::endl;
+void OctopusTower::display_information() {
+	std::cout << "OCTOPUS TOWER" << std::endl;
     std::cout << "Level : " << level_name << std::endl;
     std::cout << "Attack : kill the enemy !" << std::endl;
     std::cout << "Range : " << range << std::endl;
@@ -170,7 +170,7 @@ void OctopusTower::display_informations() {
 /**
  * @brief Change the Octopus Tower level and update its stats accordingly.
  *
- * @param The new level to apply to the tower.
+ * @param new_level The new level to apply to the tower.
  */
 void OctopusTower::changeLevel(int new_level) {
     if (new_level == 2) {

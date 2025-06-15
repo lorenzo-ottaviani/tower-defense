@@ -4,6 +4,7 @@
 #include "models/enemy.hpp"
 #include "models/enemy_factory.hpp"
 
+// Create and return a enemy object based on the specified type.
 std::unique_ptr<Enemy> EnemyFactory::createEnemy(const std::string& type) {
     if (type == "TouristBoat") {
         return std::make_unique<TouristBoat>();

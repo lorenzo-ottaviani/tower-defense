@@ -4,6 +4,7 @@
 #include "models/tower.hpp"
 #include "models/tower_factory.hpp"
 
+// Create and return a tower object based on the specified type.
 std::unique_ptr<Tower> TowerFactory::createTower(const std::string& type) {
     if (type == "Sandcastle") {
         return std::make_unique<SandcastleTower>();

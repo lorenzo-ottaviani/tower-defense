@@ -14,9 +14,10 @@ public:
 	/**
      * @brief Display information about the tower.
      */
-    virtual void display_informations() = 0;
+    virtual void display_information() = 0;
 	/**
      * @brief Change the tower's level and update its stats accordingly.
+     *
      * @param new_level The new level to apply to the tower.
      */
     virtual void changeLevel(int new_level) = 0;
@@ -40,7 +41,7 @@ private:
 
 public:
     ~SandcastleTower() = default;
-    void display_informations() override;
+    void display_information() override;
     void changeLevel(int new_level) override;
     // void attack() override;
 };
@@ -62,7 +63,7 @@ private:
 
 public:
     ~ClamTower() = default;
-    void display_informations() override;
+    void display_information() override;
     void changeLevel(int new_level) override;
     // void attack() override;
 };
@@ -84,7 +85,7 @@ private:
 
 public:
     ~AlgaeBedTower() = default;
-    void display_informations() override;
+    void display_information() override;
     void changeLevel(int new_level) override;
 	// void attack() override;
     // std::chrono::seconds slow_down();
@@ -108,7 +109,7 @@ private:
 
 public:
     ~JellyfishNestTower() = default;
-    void display_informations() override;
+    void display_information() override;
     void changeLevel(int new_level) override;
     // void attack() override;
 };
@@ -129,7 +130,7 @@ private:
 
 public:
     ~OctopusTower() = default;
-    void display_informations() override;
+    void display_information() override;
     void changeLevel(int new_level) override;
     // void attack() override;
 };
