@@ -1,0 +1,7 @@
+EnemyType,HP,Speed (units/sec),DamageToGoal,Notes
+Tourist Boat,50,1.4,1,Fast and low HP
+Fishing Boat,100,1.0,2,Medium speed and HP
+Jetski,30,1.8,1,Very fast - 50% chance to dodge projectiles
+Oil Tanker,300,1.0,4,High HP - takes only 75% damage from basic towers
+Yacht,150,1.4,3,Fast with medium HP
+Cruise Ship,600,0.6,6,Very high HP - immune to poison - 50% slow resistance
